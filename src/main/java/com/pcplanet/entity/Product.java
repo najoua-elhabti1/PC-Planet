@@ -17,22 +17,25 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_product;
 
-    @Column(name = "product_name")
+    @Column(name = "product_name" , nullable = false)
     private String productName;
-    @Column(name = "pr_description")
+    @Column(name = "pr_description", nullable = false)
     private String pr_description;
 
     @Lob
-    @Column(name = "image", columnDefinition = "BLOB")
-    private byte[] image;
+    @Column(name = "image", nullable = false)
+    private String image;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private double price;
-    @Column(name = "qte_stock")
+    @Column(name = "qte_stock" , nullable = false)
     private double qte_stock;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Invoice> orders = new ArrayList<>();
+
+
+    @ManyToMany
+    @JoinTable(name="product_orders" , joinColumns = @JoinColumn(name="id_product"), inverseJoinColumns = @JoinColumn(name="ref_order"))
+    private List<Order> orders;
 }
