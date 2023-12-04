@@ -22,7 +22,7 @@ public class Product {
     @Column(name = "pr_description", nullable = false)
     private String pr_description;
 
-    @Lob
+
     @Column(name = "image", nullable = false)
     private String image;
 
