@@ -1,5 +1,8 @@
 package com.pcplanet.entity;
 
 public enum Desc {
-    Pc, Ord_Bureau, Accesoires
+
+
+    PC_Portable, PC_Bureau , Tablette
+
 }

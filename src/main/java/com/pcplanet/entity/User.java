@@ -1,6 +1,7 @@
 package com.pcplanet.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "users")
@@ -21,7 +23,8 @@ public class User {
     private String email;
     @Column(length = 255, nullable = false)
     private String password;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Invoice> orders = new ArrayList<>();
+    private List<Order> orders;
 
 }
