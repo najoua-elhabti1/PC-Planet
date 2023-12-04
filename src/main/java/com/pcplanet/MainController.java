@@ -9,18 +9,18 @@ public class MainController {
     @GetMapping("")
     public String showHomePage(){
 //        System.out.println("MainController");
-        return "Home";
+        return "home";
     }
     @GetMapping("/login")
     public String showLoginPage(){
 //        System.out.println("MainController");
         return "login";
     }
-    @GetMapping("/register")
-    public String showregisterPage(){
-//        System.out.println("MainController");
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String showRegisterPage(){
+////        System.out.println("MainController");
+//        return "register";
+//    }
 
 
 

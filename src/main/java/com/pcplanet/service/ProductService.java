@@ -11,8 +11,13 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductRepository repo;
+
     public List<Product> listALl(){
         return (List<Product>) repo.findAll();
+    }
+    public  void registerProduct(Product prd) {
+
+        repo.save(prd);
     }
 
 
