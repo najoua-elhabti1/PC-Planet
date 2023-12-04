@@ -20,14 +20,11 @@ public class Product {
     @Column(name = "product_name" , nullable = false)
     private String productName;
 
-
-    @Column(name = "pr_description")
-
     @Column(name = "pr_description", nullable = false)
 
     private String pr_description;
 
-    @Lob
+//    @Lob
     @Column(name = "image", nullable = false)
     private String image;
 
@@ -38,10 +35,6 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Invoice> orders = new ArrayList<>();
 
 
     @ManyToMany

@@ -23,6 +23,9 @@ public class User {
     private String email;
     @Column(length = 255, nullable = false)
     private String password;
+    @Column(length = 255, nullable = false)
+
+    private String retypePassword;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
     public class UserService {
@@ -15,6 +17,17 @@ import org.springframework.stereotype.Service;
 
         @Autowired
         private  PasswordEncoder passwordEncoder;
+    @Autowired
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+    public boolean isValidLogin(String username, String password) {
+        // Fetch user details from the database
+        Optional<User> userOptional = userRepository.findByUsername(username);
+
+        return userOptional.map(user -> passwordEncoder.matches(password, user.getPassword())).orElse(false);
+    }
 
         public  User registerUser(User user) {
 

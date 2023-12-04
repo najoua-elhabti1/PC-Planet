@@ -24,12 +24,12 @@ public class MainController {
         this.categoryService= categoryService;
     }
 
-    @GetMapping("")
-
-    public String showHomePage() {
+//    @GetMapping("/")
+//    public String showHomePage() {
 //        System.out.println("MainController");
-        return "home";
-    }
+//        return "home";
+//    }
+
     public String showHomePage(Model model) {
         model.addAttribute("products", productService.listALl());
         model.addAttribute("categories" , categoryService.listALl());
@@ -38,10 +38,10 @@ public class MainController {
     }
 
 
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String showLoginPage() {
+//        return "login";
+//    }
 
 //    @GetMapping("/register")
 //    public String showRegisterPage(){
