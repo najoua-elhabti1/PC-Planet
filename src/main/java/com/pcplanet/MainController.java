@@ -1,16 +1,11 @@
 package com.pcplanet;
 
-import com.pcplanet.entity.Category;
-import com.pcplanet.entity.Product;
 import com.pcplanet.service.CategoryService;
 import com.pcplanet.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -24,17 +19,16 @@ public class MainController {
         this.categoryService= categoryService;
     }
 
-//    @GetMapping("/")
+
 //    public String showHomePage() {
 //        System.out.println("MainController");
 //        return "home";
 //    }
-
+    @GetMapping("/")
     public String showHomePage(Model model) {
         model.addAttribute("products", productService.listALl());
         model.addAttribute("categories" , categoryService.listALl());
-        return "Home";
-
+        return "index";
     }
 
 

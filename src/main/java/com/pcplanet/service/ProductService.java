@@ -29,7 +29,9 @@ public class ProductService {
         return repo.findByCategory(category);
     }
 
-
+    public List<Product> filterProductsByPrice(double minPrice, double maxPrice) {
+        return repo.findByPriceBetween(minPrice, maxPrice);
+    }
 
 
 }
