@@ -1,0 +1,27 @@
+<products>
+    <product>
+        <id_product>4</id_product>
+        <productName>Ordinateur portable XYZ</productName>
+        <pr_description>Un ordinateur portable puissant</pr_description>
+        <image>image1.jpg</image>
+        <price>1200.0</price>
+        <qte_stock>50</qte_stock>
+        <category>
+            <id_category>4</id_category>
+            <description>Ordinateurs portables</description>
+        </category>
+    </product>
+    <product>
+        <id_product>5</id_product>
+        <productName>PC de bureau ABC</productName>
+        <pr_description>Un PC de bureau performant</pr_description>
+        <image>image2.jpg</image>
+        <price>900.0</price>
+        <qte_stock>30</qte_stock>
+        <category>
+            <id_category>5</id_category>
+            <description>Ordinateurs de bureau</description>
+        </category>
+    </product>
+    <!-- Ajoutez d'autres produits ici selon votre besoin -->
+</products>

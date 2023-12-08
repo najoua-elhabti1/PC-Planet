@@ -24,28 +24,42 @@ public class MainController {
         this.categoryService= categoryService;
     }
 
-    @GetMapping("")
+//    @GetMapping("/")
+//    public String showHomePage() {
+//        System.out.println("MainController");
+//        return "home";
+//    }
+@GetMapping("/")
     public String showHomePage(Model model) {
         model.addAttribute("products", productService.listALl());
         model.addAttribute("categories" , categoryService.listALl());
-        return "Home";
+        return "home";
+
     }
 
 
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String showLoginPage() {
+//        return "login";
+//    }
 
-    @GetMapping("/register")
-    public String showRegisterPage() {
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String showRegisterPage(){
+////        System.out.println("MainController");
+//        return "register";
+//    }
+
+
+//    @GetMapping("/register")
+//    public String showRegisterPage() {
+//        return "register";
+//    }
     /*@GetMapping("/shop/{categoryId}")
     public String showProductsByCategory(@PathVariable Integer categoryId, Model model) {
         model.addAttribute("products", productService.listALl());
         model.addAttribute("categories" , categoryService.listALl());
         Category category = categoryService.findById(categoryId);
+>>>>>>> 1c8e11afccea7ddfb8940091da74bc389dcfe8e6
 
         List<Product> productsByCategory = productService.listByCategory(category);
         model.addAttribute("productsCat", productsByCategory);

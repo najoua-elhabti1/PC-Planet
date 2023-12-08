@@ -1,0 +1,38 @@
+<!-- products.xsd -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Definition of complex types -->
+
+
+    <xs:complexType name="categoryType">
+        <xs:sequence>
+            <xs:element name="id_category" type="xs:integer"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="productType">
+        <xs:sequence>
+            <xs:element name="id_product" type="xs:integer"/>
+            <xs:element name="productName" type="xs:string"/>
+            <xs:element name="pr_description" type="xs:string"/>
+            <xs:element name="image" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="qte_stock" type="xs:double"/>
+            <xs:element name="category" type="categoryType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="productsType">
+        <xs:sequence>
+            <xs:element ref="product" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definition of elements -->
+
+    <xs:element name="category" type="categoryType"/>
+    <xs:element name="product" type="productType"/>
+    <xs:element name="products" type="productsType"/>
+
+</xs:schema>

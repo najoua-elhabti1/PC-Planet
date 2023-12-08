@@ -11,6 +11,10 @@ import java.util.List;
 @Entity
 @Table(name = "category")
 public class Category {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_category;

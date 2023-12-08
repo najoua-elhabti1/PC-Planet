@@ -1,29 +1,27 @@
 //package com.pcplanet;
-//
 //import com.pcplanet.entity.*;
-//import com.pcplanet.entity.User;
+//import com.pcplanet.service.CategoryService;
 //import com.pcplanet.service.ProductService;
-//import com.pcplanet.service.UserService;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.test.annotation.Rollback;
 //
-//import java.util.List;
-//
 //@SpringBootTest
 //
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 //@Rollback(false)
+//public class CategoryTest {
 //
 //
-//public class UserRepositoryTests {
+//
+//
 //    @Autowired
-//    private UserRepository repo;
+//    private CategoryRepository catrepo;
 //
 //    @Autowired
-//    private UserService userService;
+//    private CategoryService catService;
 //    @Autowired
 //    private ProductRepository  repoP;
 //
@@ -31,21 +29,23 @@
 //    private ProductService productService;
 //
 //    @Test
-//    public void testAddNew() {
-//        User user = new User();
-//        user.setUsername("user1");
-//        user.setEmail("najouaelhabti1@gmail.com");
-//        user.setPassword("123456");
-//        userService.registerUser(user);
+//    public void testAddNew1() {
+//        Category cat = new Category();
+//        cat.setDescription(Desc.PC_Portable);
+//        catService.registerCategory(cat);
 //    }
 //    @Test
-//    public void ListAll() {
-//        List<Product> list = productService.listALl();
-//
-//        for (Product product : list) {
-//            System.out.println(product);
-//        }
-//
-//
+//    public void testAddNew2() {
+//        Category cat = new Category();
+//        cat.setDescription(Desc.Ord_Bureau);
+//        catService.registerCategory(cat);
 //    }
+//    @Test
+//    public void testAddNew3() {
+//        Category cat = new Category();
+//        cat.setDescription(Desc.Accesoires);
+//        catService.registerCategory(cat);
+//    }
+//
 //}
+//

@@ -19,10 +19,13 @@ public class User {
     private Integer id;
     @Column(nullable = false, unique = true, length = 15)
     private String username;
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(length = 255, nullable = false)
+    @Column( nullable = false)
     private String password;
+    @Column( nullable = false)
+
+    private String retypePassword;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
