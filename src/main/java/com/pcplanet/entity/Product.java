@@ -2,6 +2,7 @@ package com.pcplanet.entity;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@AllArgsConstructor
 @Table(name = "product")
 public class Product {
     @Id
@@ -44,12 +46,20 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @OneToMany(mappedBy = "product")
+    private List<Cart> carts;
 
 
     @ManyToMany
     @JoinTable(name="product_orders" , joinColumns = @JoinColumn(name="id_product"), inverseJoinColumns = @JoinColumn(name="ref_order"))
     private List<Order> orders;
+    public List<Cart> getCartItems() {
+        return carts;
+    }
 
+    public void setCartItems(List<Cart> cartItems) {
+        this.carts = cartItems;
+    }
     public void setId_product(Integer id_product) {
         this.id_product = id_product;
     }

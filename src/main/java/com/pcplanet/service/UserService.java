@@ -38,6 +38,9 @@ import java.util.Optional;
 //             Save the user to the database
             return userRepository.save(user);
         }
+        public User findUSerById(Integer id){
+        return findUSerById(id);
+        }
     }
 
 

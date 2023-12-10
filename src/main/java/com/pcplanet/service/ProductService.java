@@ -8,6 +8,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -36,22 +41,19 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Function;
 
 @Service
 public class ProductService {
-    @Autowired
 
-    private ProductRepository repo;
     @Autowired
+    private ProductRepository repo;
+  /*  @Autowired
     public ProductService(ProductRepository repo) {
         this.repo = repo;
-    }
+    }*/
     public List<Product> listALl(){
-
         return (List<Product>) repo.findAll();
     }
 
@@ -193,29 +195,47 @@ public class ProductService {
             registerProduct(product);
         }
     }*/
-    public void validateXMLAgainstXSD(String xmlData) throws IOException, SAXException {
-        // Chargement du schéma XSD depuis la ressource du projet
-        ClassPathResource xsdResource = new ClassPathResource("Data/Produits.xsd");
-        try (InputStream xsdInputStream = xsdResource.getInputStream()) {
-            Source xsdSource;
-            xsdSource = new StreamSource(xsdInputStream);
+//    public void validateXMLAgainstXSD(String xmlData) throws IOException, SAXException {
+//        // Chargement du schéma XSD depuis la ressource du projet
+//        ClassPathResource xsdResource = new ClassPathResource("Data/Produits.xsd");
+//        try (InputStream xsdInputStream = xsdResource.getInputStream()) {
+//            Source xsdSource;
+//            xsdSource = new StreamSource(xsdInputStream);
+//
+//            // Création de la fabrique de schéma
+//            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//            Schema schema = schemaFactory.newSchema(xsdSource);
+//
+//            // Création du validateur
+//            Validator validator = schema.newValidator();
+//
+//            // Validation du fichier XML
+//            validator.validate(new StreamSource(Objects.requireNonNull(new StringReader(xmlData))));
+//        }
+//    }
 
-            // Création de la fabrique de schéma
-            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = schemaFactory.newSchema(xsdSource);
 
-            // Création du validateur
-            Validator validator = schema.newValidator();
 
-            // Validation du fichier XML
-            validator.validate(new StreamSource(Objects.requireNonNull(new StringReader(xmlData))));
-        }
+
+    public List<Product> filterProductsByPrice(double minPrice, double maxPrice) {
+        return repo.findByPriceBetween(minPrice, maxPrice);
     }
 
 
+
+    public Product getProductById(Integer id) {
+
+        return repo.findById(id).orElse(null);
     }
 
 
 
+
+
+    /*public List<Product> listByCategory(Integer categoryId){
+     return repo.findById_product(categoryId);
+    }*/
+
+}
 
 

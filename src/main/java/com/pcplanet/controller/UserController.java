@@ -44,4 +44,5 @@ public String showLoginForm(Model model) {
         userService.registerUser(user);
         return "redirect:/login";
     }
+
 }

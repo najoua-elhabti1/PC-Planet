@@ -24,18 +24,26 @@ public class MainController {
         this.categoryService= categoryService;
     }
 
-//    @GetMapping("/")
+
 //    public String showHomePage() {
 //        System.out.println("MainController");
 //        return "home";
 //    }
+
 @GetMapping("/")
     public String showHomePage(Model model) {
-        model.addAttribute("products", productService.listALl());
-        model.addAttribute("categories" , categoryService.listALl());
-        return "home";
-
+    model.addAttribute("products", productService.listALl());
+    model.addAttribute("categories", categoryService.listALl());
+    return "index";
     }
+
+
+   /* @GetMapping("/")
+    public String showHomePage (Model model){
+        model.addAttribute("products", productService.listALl());
+        model.addAttribute("categories", categoryService.listALl());
+        return "index";
+    }*/
 
 
 //    @GetMapping("/login")
@@ -54,22 +62,28 @@ public class MainController {
 //    public String showRegisterPage() {
 //        return "register";
 //    }
-    /*@GetMapping("/shop/{categoryId}")
-    public String showProductsByCategory(@PathVariable Integer categoryId, Model model) {
-        model.addAttribute("products", productService.listALl());
-        model.addAttribute("categories" , categoryService.listALl());
-        Category category = categoryService.findById(categoryId);
->>>>>>> 1c8e11afccea7ddfb8940091da74bc389dcfe8e6
-
-        List<Product> productsByCategory = productService.listByCategory(category);
-        model.addAttribute("productsCat", productsByCategory);
-        model.addAttribute("selectedCategory", category);
-        return "Products";
-    }*/
-    @GetMapping("/shop")
-    public String showProducts( Model model ) {
-
-        return "Products";
-    }
+//    @GetMapping("/shop/{categoryId}")
+//    public String showProductsByCategory(@PathVariable Integer categoryId, Model model) {
+//        model.addAttribute("products", productService.listByCategory(categoryId));
+//        model.addAttribute("categories" , categoryService.listALl());
+//      /*  Category category = categoryService.findById(categoryId);
+//
+//
+//        List<Product> productsByCategory = productService.listByCategory(category);
+//        model.addAttribute("productsCat", productsByCategory);
+//        model.addAttribute("selectedCategory", category);*/
+//        return "Products";
+//    }
+//    @GetMapping("/shop")
+//    public String showProducts(Model model ){
+//
+//        return "Products";
+//    }
+/*@GetMapping("/products/{categoryId}")
+public String getProductsByCategory(@PathVariable Integer categoryId, Model model) {
+    List<Product> products = productService.listByCategory(categoryId);
+    model.addAttribute("products", products);
+    return "Products"; // Retourne le nom de la vue (template Thymeleaf)
+}*/
 
 }

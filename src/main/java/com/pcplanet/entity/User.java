@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -30,4 +29,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Cart> charts;
+
+    public Integer getId() {
+        return id;
+    }
 }
