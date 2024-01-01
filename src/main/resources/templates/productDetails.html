@@ -66,6 +66,10 @@
             Add to cart
           </button>
           </form>
+
+            <a th:href="@{'/generatePdf/' + ${productDetail.id_product}}" target="_blank"  class="btn btn-outline-dark  mx-lg-2 ">Générer PDF</a>
+
+
         </div>
       </div>
     </div>
@@ -92,6 +96,16 @@
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+          </div>
+          <a th:href="@{'/generatePdf/' + ${productDetail.id_product}}" target="_blank" class="btn btn-primary">Générer PDF</a>
+
+          <form th:action="@{/generatePdf}" method="get">
+            <button type="submit">Generate PDF</button>
+          </form>
+          <div th:if="${pdfData != null}">
+            <object th:data="${'data:application/pdf;base64,' + #strings.bytesToString(pdfData)}" type="application/pdf" width="100%" height="600px">
+              <p>Votre navigateur ne peut pas afficher le PDF. <a th:href="@{/generatePdf}" target="_blank">Cliquez ici pour le télécharger.</a></p>
+            </object>
           </div>
         </div>
       </div>
@@ -121,7 +135,10 @@
           </div>
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">Add to cart</a></div>
+            <div class="text-center flex flex-column">
+              <a class="btn btn-outline-dark mt-auto" href="">Add to cart</a>
+
+            </div>
           </div>
         </div>
       </div>

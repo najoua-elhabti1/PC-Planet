@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <products>
+        <product>
+            <id_product>11</id_product>
+            <productName>Laptop</productName>
+            <pr_description>Description du laptop</pr_description>
+            <image>chemin/vers/image.jpg</image>
+            <price>999.99</price>
+            <qte_stock>10</qte_stock>
+            <category>
+                <category_id>1</category_id>
+                <categoryName>Pcs Portables</categoryName>
+            </category>
+        </product>
+        <!-- Ajoutez d'autres produits selon vos besoins -->
+
+</products>

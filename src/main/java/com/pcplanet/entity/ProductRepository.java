@@ -7,7 +7,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 /*    List<Product> findById_product(Integer categoryId);*/
     List<Product> findByPriceBetween(double minPrice, double maxPrice);
-
+    List<Product> findByCategory(Category category);
 //    List <Product> ListProductById(Integer id);
 
 

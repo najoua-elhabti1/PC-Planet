@@ -227,6 +227,22 @@ public class ProductService {
 
         return repo.findById(id).orElse(null);
     }
+    @Transactional
+    public void saveProduct(Product product) {
+        repo.save(product);
+    }
+
+    public List<Product> getProductsByCategory(Optional<Category> category) {
+        // Vérifiez si la catégorie est présente
+        if (category.isPresent()) {
+            // Si la catégorie est présente, récupérez la liste des produits par catégorie
+            return repo.findByCategory(category.get());
+        } else {
+            // Si la catégorie n'est pas présente, renvoyez tous les produits
+            return repo.findAll();
+        }
+    }
+
 
 
 

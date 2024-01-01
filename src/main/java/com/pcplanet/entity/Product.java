@@ -30,6 +30,26 @@ public class Product {
         this.category = category;
     }
 
+    public String getPr_description() {
+        return pr_description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getQte_stock() {
+        return qte_stock;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
     //
 //<<<<<<< HEAD
 //
@@ -86,5 +106,13 @@ public class Product {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+    public void setcategoryid(int id , String desc){
+        category = new Category(id, desc);
+
+    }
+    @Override
+    public String toString() {
+        return "Product{id_product=" + id_product + ", product_name='" + productName + "', ...}";
     }
 }

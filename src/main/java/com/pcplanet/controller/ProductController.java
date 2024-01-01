@@ -1,7 +1,9 @@
 package com.pcplanet.controller;
 
 import com.pcplanet.entity.Cart;
+import com.pcplanet.entity.Category;
 import com.pcplanet.entity.Product;
+import com.pcplanet.service.CategoryService;
 import com.pcplanet.service.ChartService;
 import com.pcplanet.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class ProductController {
     @Autowired
     private ProductService productService;
     @Autowired
     private ChartService cartService;
+    @Autowired
+    private CategoryService categoryService;
     @GetMapping("/filterByPrice")
     public List<Product> filterProductsByPrice(@RequestParam double minPrice, @RequestParam double maxPrice) {
         return productService.filterProductsByPrice(minPrice, maxPrice);
@@ -33,6 +39,16 @@ public class ProductController {
 
         // Return the product detail view
         return "productDetails";
+    }
+    @GetMapping("/products/{categoryId}")
+    public String showProductsByCategory(@PathVariable Integer categoryId, Model model) {
+        Optional<Category> category = categoryService.getCategoryById(categoryId);
+        if (category.isPresent()) {
+            List<Product> products = productService.getProductsByCategory(category);
+            model.addAttribute("category", category.get());
+            model.addAttribute("products", products);
+        }
+        return "Products"; // Ceci est le nom de votre fichier HTML (products-by-category.html)
     }
 
 }
