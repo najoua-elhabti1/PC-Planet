@@ -47,10 +47,10 @@ public class PdfGeneratorService {
         StringBuilder xmlContent = new StringBuilder("<products>");
         for (Product product : productList) {
             xmlContent.append("<product>")
-
                     .append("<product_name>").append(product.getProductName()).append("</product_name>")
                     .append("<image>").append(product.getImage()).append("</image>")
                     .append("<pr_description>").append(product.getPr_description()).append("</pr_description>")
+                    .append("<price>").append(product.getPrice()).append("</price>")
                     .append("<qte_stock>").append(product.getQte_stock()).append("</qte_stock>")
                     .append("</product>");
         }
