@@ -37,7 +37,7 @@ public class PdfGeneratorService {
     private Source getXsltSource() throws Exception {
         // Charger le fichier XSLT depuis le chemin d'accès ou la ressource
         // Exemple : return new StreamSource(new File("chemin/vers/votre/fichier.xslt"));
-        return new  StreamSource(new File("C:\\Users\\lenovo\\Desktop\\XML\\products.xsl"));
+        return new  StreamSource(new File("C:\\Users\\Pro\\Downloads\\products.xsl"));
     }
 
     private String getXmlContent(List<Product> productList) {
@@ -48,9 +48,11 @@ public class PdfGeneratorService {
         for (Product product : productList) {
             xmlContent.append("<product>")
 
+
                     .append("<product_name>").append(product.getProduct_name()).append("</product_name>")
                     .append("<image>").append(product.getImage()).append("</image>")
                     .append("<pr_description>").append(product.getPr_description()).append("</pr_description>")
+                    .append("<price>").append(product.getPrice()).append("</price>")
                     .append("<qte_stock>").append(product.getQte_stock()).append("</qte_stock>")
                     .append("</product>");
         }
