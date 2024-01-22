@@ -40,7 +40,7 @@ public class PcPlanetApplication  {
   /*  @Override
     public void run(String... args) throws Exception {
         // Chargez le fichier XML depuis la ressource du projet
-        String xmlData = loadXMLFromResource("Data/Produits.xml");
+        String xmlData = loadXMLFromResource("Data/Products.xml");
         productService.validateXMLAgainstXSD(xmlData);
         // Enregistrez automatiquement les produits à partir du fichier XML
         productService.registerProductsFromXML(xmlData);

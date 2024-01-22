@@ -1,0 +1,23 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Definition of complex types -->
+
+    <xs:complexType name="categoryType">
+        <xs:sequence>
+            <xs:element name="id_category" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="categoriesType">
+        <xs:sequence>
+            <xs:element ref="category" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definition of elements -->
+
+    <xs:element name="category" type="categoryType"/>
+    <xs:element name="Categories" type="categoriesType"/>
+
+</xs:schema>

@@ -48,7 +48,7 @@ public class PdfController {
 
                 // Paramètres de l'en-tête pour indiquer que la réponse est un fichier PDF
                 response.setContentType("application/pdf");
-                response.setHeader("Content-Disposition", "inline; filename=" + product.getProductName() + ".pdf");
+                response.setHeader("Content-Disposition", "inline; filename=" + product.getProduct_name() + ".pdf");
 
                 response.flushBuffer();
             } else {

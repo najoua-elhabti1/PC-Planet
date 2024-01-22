@@ -1,0 +1,15 @@
+<Categories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="Categories.xsd">
+    <category>
+        <id_category>por</id_category>
+        <description>PC_Portable</description>
+    </category>
+    <category>
+        <id_category>bur</id_category>
+        <description>PC_Bureau</description>
+    </category>
+    <category>
+        <id_category>tab</id_category>
+        <description>Tablette</description>
+    </category>
+</Categories>

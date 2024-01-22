@@ -197,7 +197,7 @@ public class ProductService {
     }*/
 //    public void validateXMLAgainstXSD(String xmlData) throws IOException, SAXException {
 //        // Chargement du schéma XSD depuis la ressource du projet
-//        ClassPathResource xsdResource = new ClassPathResource("Data/Produits.xsd");
+//        ClassPathResource xsdResource = new ClassPathResource("Data/Products.xsd");
 //        try (InputStream xsdInputStream = xsdResource.getInputStream()) {
 //            Source xsdSource;
 //            xsdSource = new StreamSource(xsdInputStream);

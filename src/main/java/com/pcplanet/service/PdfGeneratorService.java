@@ -48,7 +48,7 @@ public class PdfGeneratorService {
         for (Product product : productList) {
             xmlContent.append("<product>")
 
-                    .append("<product_name>").append(product.getProductName()).append("</product_name>")
+                    .append("<product_name>").append(product.getProduct_name()).append("</product_name>")
                     .append("<image>").append(product.getImage()).append("</image>")
                     .append("<pr_description>").append(product.getPr_description()).append("</pr_description>")
                     .append("<qte_stock>").append(product.getQte_stock()).append("</qte_stock>")

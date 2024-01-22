@@ -6,15 +6,15 @@
 
     <xs:complexType name="categoryType">
         <xs:sequence>
-            <xs:element name="id_category" type="xs:integer"/>
-            <xs:element name="description" type="xs:string"/>
+            <xs:element name="id_category" type="xs:string"/>
+<!--            <xs:element name="description" type="xs:string"/>-->
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="productType">
         <xs:sequence>
             <xs:element name="id_product" type="xs:integer"/>
-            <xs:element name="productName" type="xs:string"/>
+            <xs:element name="product_name" type="xs:string"/>
             <xs:element name="pr_description" type="xs:string"/>
             <xs:element name="image" type="xs:string"/>
             <xs:element name="price" type="xs:double"/>
@@ -33,6 +33,6 @@
 
     <xs:element name="category" type="categoryType"/>
     <xs:element name="product" type="productType"/>
-    <xs:element name="products" type="productsType"/>
+    <xs:element name="Products" type="productsType"/>
 
 </xs:schema>

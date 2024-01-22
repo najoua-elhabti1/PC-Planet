@@ -357,10 +357,35 @@
             </div>
             <div class="swiper product-swiper">
                 <div class="swiper-wrapper">
+                    <!-- Iterate through products -->
+                    <div th:each="product : ${products}" class="swiper-slide">
+                        <div class="product-card position-relative">
+                            <div class="image-holder">
+                                <!-- Use Thymeleaf expressions to get product properties -->
+                                <img th:src="${product.image}" alt="product-item7" class="img-fluid">
+                            </div>
+                            <div class="cart-concern position-absolute">
+                                <div class="cart-button d-flex">
+                                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                                </div>
+                            </div>
+                            <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                                <h6 class="card-title text-uppercase">
+                                    <!-- Link to the product detail page -->
+                                    <a th:href="@{'/product/' + ${product.getId_product()}}" class="text-black" th:text="${product.getProduct_name()}"></a>
+                                </h6>
+                                <span class="item-price text-primary" th:text="${product.price}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper product-swiper">
+                <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder" >
-                                <img th:src="${categories[0].product[0].image}"  alt="product-item" class="img-fluid">
+                                <img th:src="${categories[0].product[0].image}"  alt="product-item7" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -382,7 +407,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/img_8.png" alt="product-item" class="img-fluid ml-5">
+                                <img src="images/img_8.png" alt="product-item8" class="img-fluid ml-5">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -400,7 +425,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item3.jpg" alt="product-item" class="img-fluid">
+                                <img src="../static/images/product-item3.jpg"  alt="product-item9" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -418,7 +443,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item4.jpg" alt="product-item" class="img-fluid">
+                                <img src="../static/images/product-item4.jpg"  alt="product-item10" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -436,7 +461,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item5.jpg" alt="product-item" class="img-fluid">
+                                <img src="../static/images/product-item5.jpg" alt="product-item11" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -471,7 +496,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img th:src="${categories[1].product[0].image}"  alt="product-item" class="img-fluid">
+                                <img th:src="${categories[1].product[0].image}"  alt="product-item1" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -489,7 +514,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item7.jpg" alt="product-item" class="img-fluid">
+                                <img src="images/product-item7.jpg" alt="product-item2" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -507,7 +532,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item8.jpg" alt="product-item" class="img-fluid">
+                                <img src="images/product-item8.jpg" alt="product-item3" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -525,7 +550,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item9.jpg" alt="product-item" class="img-fluid">
+                                <img src="images/product-item9.jpg" alt="product-item4" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -543,7 +568,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/product-item10.jpg" alt="product-item" class="img-fluid">
+                                <img src="images/product-item10.jpg" alt="product-item5" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">

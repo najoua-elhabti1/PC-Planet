@@ -6,9 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
-
+@XmlRootElement(name = "product")
+@XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @Data
 @Entity
@@ -20,7 +24,7 @@ public class Product {
     private Integer id_product;
 
     @Column(name = "product_name" , nullable = false)
-    private String productName;
+    private String product_name;
 
     @Column(name = "pr_description", nullable = false)
 
@@ -64,7 +68,7 @@ public class Product {
     @Column(name = "qte_stock" , nullable = false)
     private double qte_stock;
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "id_category", referencedColumnName = "id_category")
     private Category category;
     @OneToMany(mappedBy = "product")
     private List<Cart> carts;
@@ -85,7 +89,7 @@ public class Product {
     }
 
     public void setProductName(String productName) {
-        this.productName = productName;
+        this.product_name = productName;
     }
 
     public void setPr_description(String pr_description) {
@@ -107,12 +111,12 @@ public class Product {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-    public void setcategoryid(int id , String desc){
+    public void setcategoryid(String id , String desc){
         category = new Category(id, desc);
 
     }
     @Override
     public String toString() {
-        return "Product{id_product=" + id_product + ", product_name='" + productName + "', ...}";
+        return "Product{id_product=" + id_product + ", product_name='" + product_name + "', ...}";
     }
 }

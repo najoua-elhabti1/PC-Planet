@@ -1,27 +1,27 @@
-<products>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="Products.xsd">
     <product>
         <id_product>4</id_product>
-        <productName>Ordinateur portable XYZ</productName>
+        <product_name>Ordinateur portable XYZ</product_name>
         <pr_description>Un ordinateur portable puissant</pr_description>
         <image>image1.jpg</image>
         <price>1200.0</price>
         <qte_stock>50</qte_stock>
         <category>
-            <id_category>4</id_category>
-            <description>Ordinateurs portables</description>
+            <id_category>por</id_category>
         </category>
     </product>
     <product>
         <id_product>5</id_product>
-        <productName>PC de bureau ABC</productName>
+        <product_name>PC de bureau ABC</product_name>
         <pr_description>Un PC de bureau performant</pr_description>
         <image>image2.jpg</image>
         <price>900.0</price>
         <qte_stock>30</qte_stock>
         <category>
-            <id_category>5</id_category>
-            <description>Ordinateurs de bureau</description>
+            <id_category>bur</id_category>
+<!--            <description>Ordinateurs de bureau</description>-->
         </category>
     </product>
     <!-- Ajoutez d'autres produits ici selon votre besoin -->
-</products>
+</Products>
