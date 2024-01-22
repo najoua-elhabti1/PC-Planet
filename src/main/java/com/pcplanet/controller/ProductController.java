@@ -24,10 +24,10 @@ public class ProductController {
     private ChartService cartService;
     @Autowired
     private CategoryService categoryService;
-    @GetMapping("/filterByPrice")
-    public List<Product> filterProductsByPrice(@RequestParam double minPrice, @RequestParam double maxPrice) {
-        return productService.filterProductsByPrice(minPrice, maxPrice);
-    }
+//    @GetMapping("/filterByPrice")
+//    public List<Product> filterProductsByPrice(@RequestParam double minPrice, @RequestParam double maxPrice) {
+//        return productService.filterProductsByPrice(minPrice, maxPrice);
+//    }
     @GetMapping("/product/{id}")
     public String showProductDetail(@PathVariable Integer id, Model model) {
         // Fetch the product from the database
@@ -49,6 +49,16 @@ public class ProductController {
             model.addAttribute("products", products);
         }
         return "Products"; // Ceci est le nom de votre fichier HTML (products-by-category.html)
+    }
+    @GetMapping("/products/filter")
+    public String filterProductsByPrice(@RequestParam(name = "minPrice", required = false) Double minPrice,
+                                        @RequestParam(name = "maxPrice", required = false) Double maxPrice,
+                                        Model model) {
+        List<Product> filteredProducts = productService.filterProductsByPrice(minPrice, maxPrice);
+        model.addAttribute("products", filteredProducts);
+        model.addAttribute("minPrice", minPrice);
+        model.addAttribute("maxPrice", maxPrice);
+        return "Products";
     }
 
 }

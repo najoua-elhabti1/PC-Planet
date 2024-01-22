@@ -68,34 +68,66 @@
         </div>
     </div>
 </nav>
+<div class="swiper product-swiper">
+    <div class="swiper-wrapper">
+        <!-- Iterate through filtered products -->
+        <div th:each="product : ${products}" class="swiper-slide">
+            <div class="product-card position-relative">
+                <div class="image-holder">
+                    <!-- Use Thymeleaf expressions to get product properties -->
+                    <img th:src="${product.image}" alt="product-item7" class="img-fluid">
+                </div>
+                <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+<!--                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>-->
+                    </div>
+                </div>
+                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                    <h6 class="card-title text-uppercase">
+                        <!-- Link to the product detail page -->
+<!--                        <a th:href="@{'/product/' + ${product.getId_product()}}" class="text-black" th:text="${product.getProduct_name()}"></a>-->
+                    </h6>
+                    <span class="item-price text-primary" th:text="${product.price}"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="generate-pdf-link d-flex justify-content-between align-items-baseline pt-3">
+    <a th:href="@{'/filter/generatePdf?minPrice=' + ${minPrice} + '&maxPrice=' + ${maxPrice}}" class="btn btn-medium btn-normal text-uppercase">Generate PDF</a>
+</div>
+
 <!-- Product section-->
 
 <!-- Related items section-->
-<section class="py-5 bg-light">
-    <div class="container px-4 px-lg-5 mt-5">
-        <h2 class="fw-bolder mb-4" th:text="${category.description}"></h2>
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" >
-            <div class="col mb-5" th:each="product : ${products}">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img th:src="${product.image}" class="card-img-top"  alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center" >
-                            <a th:href="@{'/product/' + ${product.id_product}}">  <!-- Product name-->
-                            <h5 class="fw-bolder" th:text="${product.productName}"></h5>
-                            <!-- Product price-->
-                                <span th:text="${product.price} + 'DH'"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add To Cart</a></div>
-                    </div>
+<!--<section class="py-5 bg-light">-->
+<!--    <div class="container px-4 px-lg-5 mt-5">-->
+<!--        <h2 class="fw-bolder mb-4" th:text="${category.description}"></h2>-->
+<!--        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" >-->
+<!--            <div class="col mb-5" th:each="product : ${products}">-->
+<!--                <div class="card h-100">-->
+<!--                    &lt;!&ndash; Product image&ndash;&gt;-->
+<!--                    <img th:src="${product.image}" class="card-img-top"  alt="..." />-->
+<!--                    &lt;!&ndash; Product details&ndash;&gt;-->
+<!--                    <div class="card-body p-4">-->
+<!--                        <div class="text-center" >-->
+<!--                            <a th:href="@{'/product/' + ${product.id_product}}">  &lt;!&ndash; Product name&ndash;&gt;-->
+<!--                            <h5 class="fw-bolder" th:text="${product.productName}"></h5>-->
+<!--                            &lt;!&ndash; Product price&ndash;&gt;-->
+<!--                                <span th:text="${product.price} + 'DH'"></span>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Product actions&ndash;&gt;-->
+<!--                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">-->
+<!--                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add To Cart</a></div>-->
+<!--                    </div>-->
 
-                </div>
-            </div>
+<!--                </div>-->
+<!--            </div>-->
 <!--            <div class="col mb-5">-->
 <!--                <div class="card h-100">-->
 <!--                    &lt;!&ndash; Sale badge&ndash;&gt;-->

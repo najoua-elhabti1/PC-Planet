@@ -3,11 +3,14 @@ package com.pcplanet.controller;
 import com.pcplanet.entity.Product;
 import com.pcplanet.entity.ProductRepository;
 import com.pcplanet.service.PdfGeneratorService;
+import com.pcplanet.service.ProductService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +19,39 @@ import java.util.List;
 public class PdfController {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductService productService;
+    @GetMapping("/filter/generatePdf")
+    public void generatePdf(@RequestParam(name = "minPrice", required = false) Double minPrice,
+                            @RequestParam(name = "maxPrice", required = false) Double maxPrice,
+                            HttpServletResponse response, Model model) {
+        try {
+            List<Product> productList;
+            model.addAttribute("minPrice", minPrice);
+            model.addAttribute("maxPrice", maxPrice);
+            // Check if minPrice and maxPrice are provided
+            if (minPrice != null && maxPrice != null) {
+                // Filter products by price range
+                productList = productService.filterProductsByPrice(minPrice, maxPrice);
+            } else {
+                // If not provided, get all products
+                productList = productRepository.findAll();
+            }
+
+            // Utilize Apache FOP to generate the PDF file (see PdfGeneratorService below)
+            PdfGeneratorService pdfGeneratorService = new PdfGeneratorService();
+            pdfGeneratorService.generatePdf(productList, response.getOutputStream());
+
+            // Set header parameters to indicate that the response is a PDF file
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "inline; filename=products.pdf");
+
+            response.flushBuffer();
+        } catch (Exception e) {
+            // Handle exceptions
+            e.printStackTrace();
+        }
+    }
 
     @GetMapping("/generatePdf")
     public void generatePdf(HttpServletResponse response) {
