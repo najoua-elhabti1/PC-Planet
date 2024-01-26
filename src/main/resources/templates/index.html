@@ -338,72 +338,36 @@
         </div>
     </div>
 </section>
+<!--<div th:text="${#authentication.principal.username}"></div>-->
+<div th:text="${username}"></div>
 
-<div class="display-header d-flex justify-content-between pb-3">
-    <h2 class="display-7 text-dark text-uppercase" th:text="${categories[0].description}"></h2>
-    <div class="btn-right">
-
-        <form th:action="@{/products/filter}" method="get">
-            <label for="minPrice">Min Price:</label>
-            <input type="number" id="minPrice" name="minPrice" placeholder="Min Price" />
-
-            <label for="maxPrice">Max Price:</label>
-            <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" />
-
-            <button type="submit" class="btn btn-medium btn-normal text-uppercase">Filter by Price</button>
-        </form>
-    </div>
-</div>
-
-
-<section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
+        <div th:if="${#lists.isEmpty(categories)}">
+            <!-- Handle the case when the categories list is empty -->
+            No categories available.
+        </div>
+        <div th:if="${not #lists.isEmpty(categories)}">
             <div class="display-header d-flex justify-content-between pb-3">
                 <h2 class="display-7 text-dark text-uppercase" th:text="${categories[0].description}"></h2>
                 <div class="btn-right">
                     <a th:href="@{'/products/' + ${categories[0].getId_category()}}" class="btn btn-medium btn-normal text-uppercase"  >Go to Shop</a>
                     <form th:action="@{/generatePdf}" method="get">
-                     <button type="submit" class="btn btn-medium btn-normal text-uppercase">Generate PDF</button>
-                   </form>
+                        <button type="submit" class="btn btn-medium btn-normal text-uppercase">Generate PDF</button>
+                    </form>
                 </div>
             </div>
-                <div th:if="${pdfData != null}">
-                    <object th:data="${'data:application/pdf;base64,' + #strings.bytesToString(pdfData)}" type="application/pdf" width="100%" height="600px">
-                        <p>Votre navigateur ne peut pas afficher le PDF. <a th:href="@{/generatePdf}" target="_blank">Cliquez ici pour le télécharger.</a></p>
-                    </object>
-            </div>
-            <div class="swiper product-swiper">
-                <div class="swiper-wrapper">
-                    <!-- Iterate through products -->
-                    <div th:each="product : ${products}" class="swiper-slide">
-                        <div class="product-card position-relative">
-                            <div class="image-holder">
-                                <!-- Use Thymeleaf expressions to get product properties -->
-                                <img th:src="${product.image}" alt="product-item7" class="img-fluid">
-                            </div>
-                            <div class="cart-concern position-absolute">
-                                <div class="cart-button d-flex">
-                                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                                </div>
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                <h6 class="card-title text-uppercase">
-                                    <!-- Link to the product detail page -->
-                                    <a th:href="@{'/product/' + ${product.getId_product()}}" class="text-black" th:text="${product.getProduct_name()}"></a>
-                                </h6>
-                                <span class="item-price text-primary" th:text="${product.price}"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div th:if="${pdfData != null}">
+                <object th:data="${'data:application/pdf;base64,' + #strings.bytesToString(pdfData)}" type="application/pdf" width="100%" height="600px">
+                    <p>Votre navigateur ne peut pas afficher le PDF. <a th:href="@{/generatePdf}" target="_blank">Cliquez ici pour le télécharger.</a></p>
+                </object>
             </div>
             <div class="swiper product-swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder" >
-                                <img th:src="${categories[0].product[0].image}"  alt="product-item7" class="img-fluid">
+                                <img th:src="${categories[0].product[0].image}"  alt="product-item" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -414,7 +378,7 @@
 
                                 <h6   class="card-title text-uppercase">
 
-                                    <a th:href="@{'/product/' + ${categories[0].product[0].getId_product()}}"  class="text-black" th:text="${categories[0].product[0].productName}"></a>
+                                    <a th:href="@{'/product/' + ${categories[0].product[0].getId_product()}}"  class="text-black" th:text="${categories[0].product[0].product_name}"></a>
 
                                 </h6>
 
@@ -425,7 +389,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="images/img_8.png" alt="product-item8" class="img-fluid ml-5">
+                                <img src="images/img_8.png" alt="product-item" class="img-fluid ml-5">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -443,7 +407,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="../static/images/product-item3.jpg"  alt="product-item9" class="img-fluid">
+                                <img src="images/product-item3.jpg" alt="product-item" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -461,7 +425,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="../static/images/product-item4.jpg"  alt="product-item10" class="img-fluid">
+                                <img src="images/product-item4.jpg" alt="product-item" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -479,7 +443,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img src="../static/images/product-item5.jpg" alt="product-item11" class="img-fluid">
+                                <img src="images/product-item5.jpg" alt="product-item" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -499,8 +463,7 @@
         </div>
     </div>
     <div class="swiper-pagination position-absolute text-center"></div>
-</section>
-<section id="smart-watches" class="product-store padding-large position-relative">
+    <section id="smart-watches" class="product-store padding-large position-relative">
     <div class="container">
         <div class="row">
             <div class="display-header d-flex justify-content-between pb-3">
@@ -514,7 +477,7 @@
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">
-                                <img th:src="${categories[1].product[0].image}"  alt="product-item1" class="img-fluid">
+                                <img th:src="${categories[1].product[0].image}"  alt="product-item" class="img-fluid">
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
@@ -523,87 +486,88 @@
                             </div>
                             <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                                 <h3 class="card-title text-uppercase">
-                                    <a th:href="@{'/product/' + ${categories[1].product[0].getId_product()}}" th:text="${categories[1].product[0].productName}"></a>
+                                    <a th:href="@{'/product/' + ${categories[1].product[0].getId_product()}}" th:text="${categories[1].product[0].product_name}"></a>
                                 </h3>
                                 <span class="item-price text-primary" th:text="${categories[1].product[0].price} + ' DH'"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="product-card position-relative">
-                            <div class="image-holder">
-                                <img src="images/product-item7.jpg" alt="product-item2" class="img-fluid">
-                            </div>
-                            <div class="cart-concern position-absolute">
-                                <div class="cart-button d-flex">
-                                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                                </div>
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                <h3 class="card-title text-uppercase">
-                                    <a href="#">Heavy watch</a>
-                                </h3>
-                                <span class="item-price text-primary">$680</span>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card position-relative">
+                        <div class="image-holder">
+                            <img src="images/product-item7.jpg" alt="product-item" class="img-fluid">
+                        </div>
+                        <div class="cart-concern position-absolute">
+                            <div class="cart-button d-flex">
+                                <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card position-relative">
-                            <div class="image-holder">
-                                <img src="images/product-item8.jpg" alt="product-item3" class="img-fluid">
-                            </div>
-                            <div class="cart-concern position-absolute">
-                                <div class="cart-button d-flex">
-                                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                                </div>
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                <h3 class="card-title text-uppercase">
-                                    <a href="#">spotted watch</a>
-                                </h3>
-                                <span class="item-price text-primary">$750</span>
-                            </div>
+                        <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                            <h3 class="card-title text-uppercase">
+                                <a href="#">Heavy watch</a>
+                            </h3>
+                            <span class="item-price text-primary">$680</span>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="product-card position-relative">
-                            <div class="image-holder">
-                                <img src="images/product-item9.jpg" alt="product-item4" class="img-fluid">
-                            </div>
-                            <div class="cart-concern position-absolute">
-                                <div class="cart-button d-flex">
-                                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                                </div>
-                            </div>
-                            <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                <h3 class="card-title text-uppercase">
-                                    <a href="#">black watch</a>
-                                </h3>
-                                <span class="item-price text-primary">$650</span>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card position-relative">
+                        <div class="image-holder">
+                            <img src="images/product-item8.jpg" alt="product-item" class="img-fluid">
+                        </div>
+                        <div class="cart-concern position-absolute">
+                            <div class="cart-button d-flex">
+                                <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                             </div>
                         </div>
+                        <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                            <h3 class="card-title text-uppercase">
+                                <a href="#">spotted watch</a>
+                            </h3>
+                            <span class="item-price text-primary">$750</span>
+                        </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="product-card position-relative">
-                            <div class="image-holder">
-                                <img src="images/product-item10.jpg" alt="product-item5" class="img-fluid">
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card position-relative">
+                        <div class="image-holder">
+                            <img src="images/product-item9.jpg" alt="product-item" class="img-fluid">
+                        </div>
+                        <div class="cart-concern position-absolute">
+                            <div class="cart-button d-flex">
+                                <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                             </div>
-                            <div class="cart-concern position-absolute">
-                                <div class="cart-button d-flex">
-                                    <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                                </div>
+                        </div>
+                        <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                            <h3 class="card-title text-uppercase">
+                                <a href="#">black watch</a>
+                            </h3>
+                            <span class="item-price text-primary">$650</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card position-relative">
+                        <div class="image-holder">
+                            <img src="images/product-item10.jpg" alt="product-item" class="img-fluid">
+                        </div>
+                        <div class="cart-concern position-absolute">
+                            <div class="cart-button d-flex">
+                                <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                             </div>
-                            <div class="card-detail d-flex justify-content-between pt-3">
-                                <h3 class="card-title text-uppercase">
-                                    <a href="#">black watch</a>
-                                </h3>
-                                <span class="item-price text-primary">$750</span>
-                            </div>
+                        </div>
+                        <div class="card-detail d-flex justify-content-between pt-3">
+                            <h3 class="card-title text-uppercase">
+                                <a href="#">black watch</a>
+                            </h3>
+                            <span class="item-price text-primary">$750</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="swiper-pagination position-absolute text-center"></div>
 </section>

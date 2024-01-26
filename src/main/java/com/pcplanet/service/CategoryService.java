@@ -48,8 +48,8 @@ public class CategoryService  implements CommandLineRunner {
     }
 
 
-    public Category findById(Integer l) {
-            Optional<Category> optionalCategory = repo.findById(l);
+    public Category findById(String l) {
+            Optional<Category> optionalCategory = repo.findById(Integer.valueOf(l));
 
         return optionalCategory.orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + l));
     }
@@ -132,9 +132,9 @@ public void parseAndSaveProducts(String filePath) {
 }
 
 
-    public Category findCategoryById(String idCategory) {
-        return repo.findByIdCategory(idCategory);
-    }
+//    public Category findCategoryById(String idCategory) {
+//        return repo.findByIdCategory(idCategory);
+//    }
     public void parseAndSaveCategories(String filePath) {
         try {
             // Provide the path to your XML file
@@ -184,7 +184,13 @@ public void parseAndSaveProducts(String filePath) {
 //        }
 //    }
 
-    public Optional<Category> getCategoryById(Integer categoryId) {
-        return repo.findById(categoryId);
+    public Optional<Category> getCategoryById(String categoryId) {
+        try {
+            Integer categoryIdInt = Integer.parseInt(categoryId);
+            return repo.findById(categoryIdInt);
+        } catch (NumberFormatException e) {
+            // Handle the case where categoryId is not a valid integer
+            return Optional.empty();
+        }
     }
 }

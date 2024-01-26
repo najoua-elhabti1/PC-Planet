@@ -30,6 +30,17 @@ public class Product {
 
     private String pr_description;
 
+    public Product(String productName, String description) {
+        this.product_name=productName;
+        this.pr_description=description;
+    }
+
+    public Product(String product_name, String pr_description, String image) {
+        this.product_name = product_name;
+        this.pr_description = pr_description;
+        this.image = image;
+    }
+
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -50,9 +61,9 @@ public class Product {
         return qte_stock;
     }
 
-    public Category getCategory() {
-        return category;
-    }
+
+
+
 
     //
 //<<<<<<< HEAD
@@ -90,6 +101,15 @@ public class Product {
 
     public void setProductName(String productName) {
         this.product_name = productName;
+    }
+
+    public Product(String product_name, String pr_description, String image, double price, double qte_stock, Category category) {
+        this.product_name = product_name;
+        this.pr_description = pr_description;
+        this.image = image;
+        this.price = price;
+        this.qte_stock = qte_stock;
+        this.category = category;
     }
 
     public void setPr_description(String pr_description) {

@@ -13,7 +13,7 @@
 
     <xs:complexType name="productType">
         <xs:sequence>
-            <xs:element name="id_product" type="xs:integer"/>
+
             <xs:element name="product_name" type="xs:string"/>
             <xs:element name="pr_description" type="xs:string"/>
             <xs:element name="image" type="xs:string"/>

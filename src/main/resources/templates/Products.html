@@ -68,32 +68,70 @@
         </div>
     </div>
 </nav>
+<div class="btn-right">
+
+    <form th:action="@{/products/filter/{categoryId}(categoryId=${categoryId})}" method="get">
+        <label for="minPrice">Min Price:</label>
+        <input type="number" id="minPrice" name="minPrice" placeholder="Min Price" />
+
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" />
+
+        <button type="submit" class="btn btn-medium btn-normal text-uppercase">Filter by Price</button>
+    </form>
+</div>
 <div class="swiper product-swiper">
     <div class="swiper-wrapper">
-        <!-- Iterate through filtered products -->
-        <div th:each="product : ${products}" class="swiper-slide">
+        <div class="swiper-slide">
+            <div th:each="product : ${products}" class="swiper-slide">
+
             <div class="product-card position-relative">
-                <div class="image-holder">
-                    <!-- Use Thymeleaf expressions to get product properties -->
+                <div class="image-holder" >
                     <img th:src="${product.image}" alt="product-item7" class="img-fluid">
                 </div>
                 <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
-<!--                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>-->
+                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
                     </div>
                 </div>
                 <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h6 class="card-title text-uppercase">
-                        <!-- Link to the product detail page -->
-<!--                        <a th:href="@{'/product/' + ${product.getId_product()}}" class="text-black" th:text="${product.getProduct_name()}"></a>-->
+
+                    <h6   class="card-title text-uppercase">
+
+                        <span class="item-price text-primary" th:text="${product.product_name}"></span>
+
                     </h6>
+
                     <span class="item-price text-primary" th:text="${product.price}"></span>
                 </div>
-
             </div>
         </div>
-    </div>
-</div>
+<!--<div class="swiper product-swiper">-->
+<!--    <div class="swiper-wrapper">-->
+<!--        &lt;!&ndash; Iterate through filtered products &ndash;&gt;-->
+<!--        <div th:each="product : ${products}" class="swiper-slide">-->
+<!--            <div class="product-card position-relative">-->
+<!--                <div class="image-holder">-->
+<!--                    &lt;!&ndash; Use Thymeleaf expressions to get product properties &ndash;&gt;-->
+<!--                    <img th:src="${product.image}" alt="product-item7" class="img-fluid">-->
+<!--                </div>-->
+<!--                <div class="cart-concern position-absolute">-->
+<!--                    <div class="cart-button d-flex">-->
+<!--                        &lt;!&ndash; <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a> &ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">-->
+<!--                    <h6 class="card-title text-uppercase">-->
+<!--                        &lt;!&ndash; Link to the product detail page &ndash;&gt;-->
+<!--                        &lt;!&ndash; <a th:href="@{'/product/' + ${product.getId_product()}}" class="text-black" th:text="${product.getProduct_name()}"></a> &ndash;&gt;-->
+<!--                    </h6>-->
+<!--                    <span class="item-price text-primary" th:text="${product.product_name}"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 <br>
 <br>
 <div class="generate-pdf-link d-flex justify-content-between align-items-baseline pt-3">
@@ -212,7 +250,7 @@
 <!--            </div>-->
         </div>
     </div>
-</section>
+</div>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
