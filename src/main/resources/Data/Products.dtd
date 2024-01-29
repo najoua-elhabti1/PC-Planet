@@ -1,0 +1,9 @@
+<!ELEMENT Products (product+)>
+        <!ELEMENT product (product_name, pr_description, image, price, qte_stock, category)>
+        <!ELEMENT product_name (#PCDATA)>
+        <!ELEMENT pr_description (#PCDATA)>
+        <!ELEMENT image (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+        <!ELEMENT qte_stock (#PCDATA)>
+        <!ELEMENT category (id_category)>
+        <!ELEMENT id_category (#PCDATA)>

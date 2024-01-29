@@ -1,5 +1,6 @@
 package com.pcplanet.controller;
 
+import com.pcplanet.entity.Category;
 import com.pcplanet.entity.Product;
 import com.pcplanet.entity.ProductRepository;
 import com.pcplanet.service.PdfGeneratorService;
@@ -21,8 +22,10 @@ public class PdfController {
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
-    @GetMapping("/filter/generatePdf")
-    public void generatePdf(@RequestParam(name = "minPrice", required = false) Double minPrice,
+    @Autowired
+    private ProductController productController;
+    @GetMapping("/filter/generatePdf/{categoryId}")
+    public void generatePdf(@PathVariable String categoryId, @RequestParam(name = "minPrice", required = false) Double minPrice,
                             @RequestParam(name = "maxPrice", required = false) Double maxPrice,
                             HttpServletResponse response, Model model) {
         try {
@@ -31,11 +34,13 @@ public class PdfController {
             model.addAttribute("maxPrice", maxPrice);
             // Check if minPrice and maxPrice are provided
             if (minPrice != null && maxPrice != null) {
+
                 // Filter products by price range
-                productList = productService.filterProductsByPrice(minPrice, maxPrice);
-            } else {
+                productList = productController.filterProductsByPrice(categoryId, minPrice, maxPrice);
+            }
+            else {
                 // If not provided, get all products
-                productList = productRepository.findAll();
+                productList = null;
             }
 
             // Utilize Apache FOP to generate the PDF file (see PdfGeneratorService below)
@@ -43,6 +48,25 @@ public class PdfController {
             pdfGeneratorService.generatePdf(productList, response.getOutputStream());
 
             // Set header parameters to indicate that the response is a PDF file
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "inline; filename=products.pdf");
+
+            response.flushBuffer();
+        } catch (Exception e) {
+            // Handle exceptions
+            e.printStackTrace();
+        }
+    }
+    @GetMapping("/genererPdf/{categoryId}")
+    public void generatePdf(@PathVariable String categoryId, HttpServletResponse response) {
+        try {
+            List<Product> productList = productRepository.findByCategory(new Category(categoryId));
+
+            // Utilisez Apache FOP pour générer le fichier PDF (voir PdfGeneratorService ci-dessous)
+            PdfGeneratorService pdfGeneratorService = new PdfGeneratorService();
+            pdfGeneratorService.generatePdf(productList, response.getOutputStream());
+
+            // Paramètres de l'en-tête pour indiquer que la réponse est un fichier PDF
             response.setContentType("application/pdf");
             response.setHeader("Content-Disposition", "inline; filename=products.pdf");
 

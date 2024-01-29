@@ -1,3 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE Products [
+        <!ELEMENT Products (product+)>
+        <!ELEMENT product (product_name, pr_description, image, price, qte_stock, category)>
+        <!ELEMENT product_name (#PCDATA)>
+        <!ELEMENT pr_description (#PCDATA)>
+        <!ELEMENT image (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+        <!ELEMENT qte_stock (#PCDATA)>
+        <!ELEMENT category (id_category)>
+        <!ELEMENT id_category (#PCDATA)>
+        ]>
+
 <Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="Products.xsd">
     <product>
