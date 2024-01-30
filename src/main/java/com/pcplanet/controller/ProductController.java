@@ -47,18 +47,18 @@ public class ProductController {
 //    public List<Product> filterProductsByPrice(@RequestParam double minPrice, @RequestParam double maxPrice) {
 //        return productService.filterProductsByPrice(minPrice, maxPrice);
 //    }
-//    @GetMapping("/product/{id}")
-//    public String showProductDetail(@PathVariable String id, Model model) {
-//        // Fetch the product from the database
-//        Product product = productService.getProductById(id);
-//        long cartItemCount = cartService.getCartItemCount();
-//        model.addAttribute("cartItemCount", cartItemCount);
-//        // Add the product to the model
-//        model.addAttribute("productDetail", product);
-//
-//        // Return the product detail view
-//        return "productDetails";
-//    }
+    @GetMapping("/product/{id}")
+    public String showProductDetail(@PathVariable Integer id, Model model) {
+        // Fetch the product from the database
+        Product product = productService.getProductById(id);
+        long cartItemCount = cartService.getCartItemCount();
+        model.addAttribute("cartItemCount", cartItemCount);
+        // Add the product to the model
+        model.addAttribute("productDetail", product);
+
+        // Return the product detail view
+        return "productDetails";
+    }
 //    @GetMapping("/products/{categoryId}")
 //    public String showProductsByCategory(@PathVariable String categoryId, Model model) {
 //        Optional<Category> category = categoryService.getCategoryById(categoryId);
@@ -109,7 +109,7 @@ public class ProductController {
         model.addAttribute("products", products);
 
         // Return the Thymeleaf template name
-        return "productDetails";
+        return "Products";
     }
 
 
@@ -176,5 +176,6 @@ public List<Product> filterProductsByPrice(String category, double minPrice, dou
         model.addAttribute("category", categoryId);
         return "Products";
     }
+
 
 }

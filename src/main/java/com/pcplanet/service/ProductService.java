@@ -42,10 +42,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
+import java.io.*;
 import java.util.*;
 import java.util.function.Function;
 
@@ -196,6 +193,47 @@ public class ProductService {
     }*/
 
 
+    public Map<String, List<Product>> getProductsFromXML() {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            javax.xml.parsers.DocumentBuilder builder = factory.newDocumentBuilder();
+            String filePath = "src/main/resources/Data/Products.xml";
+            InputStream inputStream = new FileInputStream(filePath);
+            InputSource inputSource = new InputSource(inputStream);
+            Document document = builder.parse(inputSource);
+            XPathFactory xPathFactory = XPathFactory.newInstance();
+            XPath xpath = xPathFactory.newXPath();
+            String expression = "/Products/product";
+            XPathExpression xPathExpression = xpath.compile(expression);
+            NodeList nodeList = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
+            Map<String, List<Product>> categoryProductsMap = new HashMap<>();
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                Product product = new Product();
+                product.setId_product(Integer.parseInt(xpath.evaluate("id_product", node)));
+                product.setProductName(xpath.evaluate("product_name", node));
+                product.setPr_description(xpath.evaluate("pr_description", node));
+                product.setImage(xpath.evaluate("image",node));
+                Category productCategory = new Category();
+                productCategory.setId_category(xpath.evaluate("category/id_category", node));
+                product.setCategory(productCategory);
+                product.setPrice(Double.parseDouble(xpath.evaluate("price", node)));
+                product.setQte_stock(Double.parseDouble(xpath.evaluate("qte_stock", node)));
+                String categoryId = productCategory.getId_category();
+                categoryProductsMap.computeIfAbsent(categoryId, k -> new ArrayList<>()).add(product);
+            }
+
+            return categoryProductsMap;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyMap();
+        }
+    }
+
+
+
+
 /*    public void registerProductsFromXML(String xmlData) {
         List<Product> products = getProductsFromXML(xmlData);
         for (Product product : products) {
@@ -311,9 +349,9 @@ public List<Product> filterProductsByPrice(double minPrice, double maxPrice) thr
 }
 
 
-    public Product getProductById(String id) {
+    public Product getProductById(Integer id) {
 
-        return repo.findById(Integer.parseInt(id)).orElse(null);
+        return repo.findById(id).orElse(null);
     }
     @Transactional
     public void saveProduct(Product product) {

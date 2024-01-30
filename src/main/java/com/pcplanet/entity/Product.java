@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_product;
 
     @Column(name = "product_name" , nullable = false)
