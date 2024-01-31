@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -35,12 +36,17 @@ public class User implements UserDetails{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Cart> charts;
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 
 
+    public Cart getCart() {
+        return cart;
+    }
 
-
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public Integer getId() {
         return id;

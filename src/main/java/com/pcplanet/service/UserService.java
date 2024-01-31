@@ -3,6 +3,7 @@ import com.pcplanet.entity.User;
 import com.pcplanet.entity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,20 @@ import java.util.Optional;
         public User findUSerById(Integer id){
         return findUSerById(id);
         }
+
+    public String getCurrentUsername() {
+        // Récupérer l'objet Authentication du contexte de sécurité
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // Vérifier si l'utilisateur est authentifié
+        if (authentication != null && authentication.isAuthenticated()) {
+            // Extraire le nom d'utilisateur directement à partir de l'objet principal
+            return authentication.getName();
+        }
+
+        // Retourner null ou gérer le cas où le nom d'utilisateur n'est pas disponible
+        return null;
+    }
     }
 
 

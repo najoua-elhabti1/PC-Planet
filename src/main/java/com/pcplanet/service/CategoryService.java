@@ -48,7 +48,7 @@ public class CategoryService  implements CommandLineRunner {
     }
 
 
-    public Category findById(Integer l) {
+    public Category findById(String l) {
             Optional<Category> optionalCategory = repo.findById(l);
 
         return optionalCategory.orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + l));
@@ -184,7 +184,7 @@ public void parseAndSaveProducts(String filePath) {
 //        }
 //    }
 
-    public Optional<Category> getCategoryById(Integer categoryId) {
+    public Optional<Category> getCategoryById(String categoryId) {
         return repo.findById(categoryId);
     }
 }

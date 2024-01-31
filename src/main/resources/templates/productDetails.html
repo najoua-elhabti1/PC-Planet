@@ -34,11 +34,12 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
+      <form class="d-flex"  th:action="@{'/view'}" method="get">
+        <input type="hidden" name="userId" th:value="11" />
         <button class="btn btn-outline-dark" type="submit">
           <i class="bi-cart-fill me-1"></i>
-          Cart
-          <span id="cartItemCount" class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartItemCount}"></span>
+            View Cart
+          <span  class="badge bg-dark text-white ms-1 rounded-pill" ></span>
         </button>
       </form>
     </div>
@@ -59,15 +60,17 @@
         <p class="lead" th:text="${productDetail.pr_description}" ></p>
         <div class="d-flex">
           <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-
-          <form th:action=" @{'/add/' + ${productDetail.getId_product()}}" method="post">
-          <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+         <form th:action="@{'/addToCart/' +  ${productDetail.id_product}}" method="post">
+          <input type="hidden" name="userId" value="11" />
+           <input type="hidden" name="quantity" value="1" />
+           <button class="btn btn-outline-dark flex-shrink-0" type="submit">
             <i class="bi-cart-fill me-1"></i>
             Add to cart
-          </button>
-          </form>
+           </button>
+        </form>
 
-            <a th:href="@{'/generatePdf/' + ${productDetail.id_product}}" target="_blank"  class="btn btn-outline-dark  mx-lg-2 ">Générer PDF</a>
+
+          <a th:href="@{'/generatePdf/' + ${productDetail.id_product}}" target="_blank"  class="btn btn-outline-dark  mx-lg-2 ">Générer PDF</a>
 
 
         </div>

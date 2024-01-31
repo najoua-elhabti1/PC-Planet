@@ -25,8 +25,13 @@ public class SecurityConfig {
                 .securityMatchers((matchers) -> matchers
                         .requestMatchers("/home")
                 )
+
                 .authorizeHttpRequests((authorize) -> authorize
                         .anyRequest().permitAll()
+                )
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/login") // Spécifiez l'URL de votre page de connexion personnalisée
+                        .permitAll()
                 )
                 .httpBasic(Customizer.withDefaults());
         return http.build();

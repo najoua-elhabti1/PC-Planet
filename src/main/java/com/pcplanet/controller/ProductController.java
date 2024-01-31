@@ -41,7 +41,7 @@ public class ProductController {
         return "productDetails";
     }
     @GetMapping("/products/{categoryId}")
-    public String showProductsByCategory(@PathVariable Integer categoryId, Model model) {
+    public String showProductsByCategory(@PathVariable String categoryId, Model model) {
         Optional<Category> category = categoryService.getCategoryById(categoryId);
         if (category.isPresent()) {
             List<Product> products = productService.getProductsByCategory(category);

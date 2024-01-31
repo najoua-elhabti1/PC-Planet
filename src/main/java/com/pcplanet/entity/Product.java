@@ -34,6 +34,10 @@ public class Product {
         this.category = category;
     }
 
+    public Integer getId_product() {
+        return id_product;
+    }
+
     public String getPr_description() {
         return pr_description;
     }
@@ -70,7 +74,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "id_category", referencedColumnName = "id_category")
     private Category category;
-    @OneToMany(mappedBy = "product")
+    @ManyToMany(mappedBy = "products")
     private List<Cart> carts;
 
 

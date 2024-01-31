@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @Data
 @Entity
@@ -14,26 +17,25 @@ import lombok.NoArgsConstructor;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_chart;
+    private Long id;
 
-    @Column(nullable = true, length = 15)
-    private  Integer quantity=0;
-
-    public Integer getUser() {
-        return user.getId() ;
+    public void setUser(User user) {
+        this.user =  user;
     }
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    public Cart(Product pr , User user ){
-        this.product = pr;
-        this.user = user;
-        this.product.setQte_stock(pr.getQte_stock()-1);
-        quantity+=1;
-    }
 
+    @ManyToMany
+    @JoinTable(
+            name = "cart_products",
+            joinColumns = @JoinColumn(name = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }
