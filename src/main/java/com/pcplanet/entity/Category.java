@@ -6,12 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
+import java.util.Objects;
+
 @XmlRootElement(name = "categoriy")
 @NoArgsConstructor
 @Data
 @Entity
 @Table(name = "category")
 public class Category {
+
+    public Category(String id_category) {
+        this.id_category = id_category;
+    }
+
     public String getId_category() {
         return id_category;
     }
@@ -43,4 +50,17 @@ public class Category {
     private String description;
     @OneToMany( mappedBy="category" , cascade = CascadeType.ALL)
     private List<Product> product;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(id_category, category.id_category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_category);
+    }
 }

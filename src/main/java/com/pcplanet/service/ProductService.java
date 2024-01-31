@@ -1,10 +1,15 @@
 package com.pcplanet.service;
+import javax.xml.transform.stream.StreamSource;
 
+import com.pcplanet.controller.ProductController;
+
+import net.sf.saxon.s9api.*;
 import com.pcplanet.entity.*;
 import io.github.classgraph.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import net.sf.saxon.s9api.SaxonApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
@@ -14,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -26,7 +32,6 @@ import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -37,10 +42,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
+import java.io.*;
 import java.util.*;
 import java.util.function.Function;
 
@@ -49,6 +51,8 @@ public class ProductService {
 
     @Autowired
     private ProductRepository repo;
+
+
   /*  @Autowired
     public ProductService(ProductRepository repo) {
         this.repo = repo;
@@ -189,6 +193,47 @@ public class ProductService {
     }*/
 
 
+    public Map<String, List<Product>> getProductsFromXML() {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            javax.xml.parsers.DocumentBuilder builder = factory.newDocumentBuilder();
+            String filePath = "src/main/resources/Data/Products.xml";
+            InputStream inputStream = new FileInputStream(filePath);
+            InputSource inputSource = new InputSource(inputStream);
+            Document document = builder.parse(inputSource);
+            XPathFactory xPathFactory = XPathFactory.newInstance();
+            XPath xpath = xPathFactory.newXPath();
+            String expression = "/Products/product";
+            XPathExpression xPathExpression = xpath.compile(expression);
+            NodeList nodeList = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
+            Map<String, List<Product>> categoryProductsMap = new HashMap<>();
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                Product product = new Product();
+                product.setId_product(Integer.parseInt(xpath.evaluate("id_product", node)));
+                product.setProductName(xpath.evaluate("product_name", node));
+                product.setPr_description(xpath.evaluate("pr_description", node));
+                product.setImage(xpath.evaluate("image",node));
+                Category productCategory = new Category();
+                productCategory.setId_category(xpath.evaluate("category/id_category", node));
+                product.setCategory(productCategory);
+                product.setPrice(Double.parseDouble(xpath.evaluate("price", node)));
+                product.setQte_stock(Double.parseDouble(xpath.evaluate("qte_stock", node)));
+                String categoryId = productCategory.getId_category();
+                categoryProductsMap.computeIfAbsent(categoryId, k -> new ArrayList<>()).add(product);
+            }
+
+            return categoryProductsMap;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyMap();
+        }
+    }
+
+
+
+
 /*    public void registerProductsFromXML(String xmlData) {
         List<Product> products = getProductsFromXML(xmlData);
         for (Product product : products) {
@@ -217,10 +262,91 @@ public class ProductService {
 
 
 
-    public List<Product> filterProductsByPrice(double minPrice, double maxPrice) {
-        return repo.findByPriceBetween(minPrice, maxPrice);
-    }
+//    public List<Product> filterProductsByPrice(double minPrice, double maxPrice) {
+//        return repo.findByPriceBetween(minPrice, maxPrice);
+//    }
+//public List<Product> filterProductsByPrice(double minPrice, double maxPrice) throws SaxonApiException {
+//    // Load XML document
+//    List<Product> filteredProducts = new ArrayList<>();
+//
+//    try {
+//        Processor processor = new Processor(false);
+//        XPathCompiler xpathCompiler = processor.newXPathCompiler();
+//        DocumentBuilder builder = processor.newDocumentBuilder();
+////        ClassPathResource resource = new ClassPathResource("Data/Products.xml");
+//
+//        XdmNode doc = builder.build(new StreamSource(new File("src/main/resources/Data/Products.xml")));
+//
+//        // Define XPath expression to select product elements
+//        XPathSelector selector = xpathCompiler.compile("/products/product[price >= " + minPrice + " and price <= " + maxPrice + "]").load();
+//        selector.setContextItem(doc);
+//
+//        // Evaluate XPath expression and return selected product nodes
+//        XPathExecutable xpathExec = xpathCompiler.compile(".");
+//        for (XdmItem item : selector) {
+//            XdmNode productNode = (XdmNode) item;
+//            // Extract product attributes directly within the loop
+//            String productName = extractString(xpathCompiler, productNode, "product_name");
+//            String description = extractString(xpathCompiler, productNode, "pr_description");
+//            // Extract other attributes as needed
+//
+//            // Create Product object with extracted attributes
+//            Product product = new Product(productName, description);
+//            System.out.println(product);
+//            filteredProducts.add(product);
+//
+//        }
+//
+//    }catch (SaxonApiException e){
+//        System.out.println(e.getMessage());
+//    }
+//    return filteredProducts;
+//}
+//
+//    // Helper method to extract string value using XPath
+//    private String extractString(XPathCompiler xpathCompiler, XdmNode contextNode, String xpathExpression) throws SaxonApiException {
+//        XPathSelector selector = xpathCompiler.compile(xpathExpression).load();
+//        selector.setContextItem(contextNode);
+//        XdmItem item = selector.evaluateSingle();
+//        return (item != null) ? item.getStringValue() : null;
+//    }
+public List<Product> filterProductsByPrice(double minPrice, double maxPrice) throws SaxonApiException {
+    List<Product> filteredProducts = new ArrayList<>();
+    try {
 
+        Processor processor = new Processor(false);
+        XPathCompiler xpathCompiler = processor.newXPathCompiler();
+        DocumentBuilder builder = processor.newDocumentBuilder();
+        XdmNode doc = builder.build(new StreamSource(new File("src/main/resources/Data/Products.xml")));
+
+        // Define XPath expression to select product elements with price between minPrice and maxPrice
+        String xpathExpression = "/Products/product[price >= " + minPrice + " and price <= " + maxPrice + "]";
+        XPathSelector selector = xpathCompiler.compile(xpathExpression).load();
+        selector.setContextItem(doc);
+
+        // Evaluate XPath expression and return selected product nodes
+        for (XdmItem item : selector) {
+            XdmNode productNode = (XdmNode) item;
+            // Extract product attributes directly using XPath expressions
+            String productName = xpathCompiler.evaluateSingle("product_name", productNode).getStringValue();
+            String description = xpathCompiler.evaluateSingle("pr_description", productNode).getStringValue();
+            String image = xpathCompiler.evaluateSingle("image", productNode).getStringValue();
+            String categoryId = xpathCompiler.evaluateSingle("category", productNode).getStringValue();
+//            System.out.println(categoryId);
+            Category category = new Category(categoryId);
+            double price = Double.parseDouble(xpathCompiler.evaluateSingle("price", productNode).getStringValue());
+            double qte = Double.parseDouble(xpathCompiler.evaluateSingle("qte_stock", productNode).getStringValue());
+
+            // Create Product object with extracted attributes
+            Product product = new Product(productName, description,image, price, qte, category);
+            filteredProducts.add(product);
+
+        }
+    } catch (SaxonApiException e) {
+        System.out.println(e.getMessage());
+    }
+    return filteredProducts;
+}
 
 
     public Product getProductById(Integer id) {

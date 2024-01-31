@@ -1,3 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE Categories [
+        <!ELEMENT Categories (category+)>
+        <!ELEMENT category (id_category, description)>
+        <!ELEMENT id_category (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+
+        ]
+        >
 <Categories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="Categories.xsd">
     <category>

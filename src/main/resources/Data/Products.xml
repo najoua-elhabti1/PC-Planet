@@ -1,27 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE Products [
+        <!ELEMENT Products (product+)>
+        <!ELEMENT product (id_product, product_name, pr_description, image, price, qte_stock, category)>
+        <!ELEMENT id_product (#PCDATA)>
+        <!ELEMENT product_name (#PCDATA)>
+        <!ELEMENT pr_description (#PCDATA)>
+        <!ELEMENT image (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+        <!ELEMENT qte_stock (#PCDATA)>
+        <!ELEMENT category (id_category)>
+        <!ELEMENT id_category (#PCDATA)>
+        ]>
+
 <Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="Products.xsd">
     <product>
-        <id_product>4</id_product>
-        <product_name>Ordinateur portable XYZ</product_name>
-        <pr_description>Un ordinateur portable puissant</pr_description>
-        <image>image1.jpg</image>
-        <price>1200.0</price>
-        <qte_stock>50</qte_stock>
+        <id_product>1</id_product>
+        <product_name>Lenovo ThinkPad A485</product_name>
+        <pr_description>CPU : AMD Ryzen™ 5 PRO 2500U  @ 2GHz Up to 3.6GHz
+            RAM : 8Go DDR4
+            Disque Dur : 256Go SSD
+            Ecran : 14″ Full HD
+            Radeon™ Vega 8 Graphics 1Go</pr_description>
+        <image>/images/001-1.jpg</image>
+        <price>2899.00</price>
+        <qte_stock>5</qte_stock>
         <category>
             <id_category>por</id_category>
         </category>
     </product>
     <product>
-        <id_product>5</id_product>
-        <product_name>PC de bureau ABC</product_name>
-        <pr_description>Un PC de bureau performant</pr_description>
-        <image>image2.jpg</image>
-        <price>900.0</price>
-        <qte_stock>30</qte_stock>
+        <id_product>2</id_product>
+        <product_name>HP ProBook x360 735 G7 AMD Ryzen 7 Pro 4750u</product_name>
+        <pr_description>CPU : AMD® Ryzen™ 7 Pro-4750uU @ 1.7GHz Jusqu`à 4.1GHz
+            RAM : 16Go DDR4
+            Disque Dur : 512Go NVMe
+            Ecran : 13.3″ IPS Full HD Rotation Tactile
+            OS : Windows 11 Pro</pr_description>
+        <image>/images/hp-x360-435-g7-10.jpg</image>
+        <price>6750.00</price>
+        <qte_stock>3</qte_stock>
         <category>
-            <id_category>bur</id_category>
-<!--            <description>Ordinateurs de bureau</description>-->
+            <id_category>por</id_category>
         </category>
     </product>
-    <!-- Ajoutez d'autres produits ici selon votre besoin -->
+    <product>
+        <id_product>3</id_product>
+        <product_name>PC Portable Acer Swift</product_name>
+        <pr_description>PC Portable Acer Swift 3 SF314-59-54XF i5 11ème Génération
+            Processeur: Intel® Core™ i5-1135G7, 2,40 GHz, Quad-core (4 cœurs)
+            RAM: 16 Go LPDDR4X</pr_description>
+        <image>images/img_11.png</image>
+        <price>8990.0</price>
+        <qte_stock>30</qte_stock>
+        <category>
+            <id_category>por</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>4</id_product>
+        <product_name>Mini ordinateur de bureau HP</product_name>
+        <pr_description>Modèle : HP 260 G4 DM
+            Processeur : 10e génération de processeurs Intel® Core™ i3-10110U (2.1 GHz jusqu’à 4.1GHz , 4 MB de cache, 2 cœurs).
+   </pr_description>
+        <image>images/img_14.png</image>
+        <price>9400.0</price>
+        <qte_stock>20</qte_stock>
+        <category>
+            <id_category>bur</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>5</id_product>
+        <product_name>Dell XPS 15</product_name>
+        <pr_description>Le modèle XPS 15 constitue le parfait équilibre entre taille et performances pour des projets créatifs encore plus exigeants. Redoublez de créativité grâce à un PC équipé de processeurs Intel® Core™ de 12e génération. </pr_description>
+        <image>/images/img_12.png</image>
+        <price>9000.0</price>
+        <qte_stock>30</qte_stock>
+        <category>
+            <id_category>por</id_category>
+        </category>
+    </product>
 </Products>
