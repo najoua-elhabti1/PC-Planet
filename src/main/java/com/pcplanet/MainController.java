@@ -55,6 +55,7 @@ public class MainController {
                 System.out.println("Product Name: " + product.getProduct_name());
                 System.out.println("Product Price: " + product.getPrice());
                 System.out.println("Product Image: " + product.getImage());
+                System.out.println("Id  " + product.getId_product());
                 // Add more fields as needed
                 System.out.println(); // Add a newline for better readability
             }

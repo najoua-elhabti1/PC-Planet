@@ -104,9 +104,11 @@ public class ProductController {
                 String productName = productElement.getElementsByTagName("product_name").item(0).getTextContent();
                 String description = productElement.getElementsByTagName("pr_description").item(0).getTextContent();
                 // Extract other product details as needed
-
+                double price = Double.parseDouble(productElement.getElementsByTagName("price").item(0).getTextContent());
+                String image = productElement.getElementsByTagName("image").item(0).getTextContent();
+                System.out.println("price  " +price);
                 // Create Product object and add to the list
-                Product product = new Product(productName, description);
+                Product product = new Product(productName, description,image,price);
                 products.add(product);
             }
         } catch (Exception e) {
@@ -114,7 +116,11 @@ public class ProductController {
 
         }
 
+        Optional<Category> category = categoryService.getCategoryById(categoryId);
         // Add the processed products to the model
+        if (category.isPresent()) {
+            model.addAttribute("category", category.get());
+        }
         model.addAttribute("products", products);
 
         // Return the Thymeleaf template name

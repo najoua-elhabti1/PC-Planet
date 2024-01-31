@@ -44,7 +44,7 @@ public class PdfGeneratorService {
     private Source getXsltSource() throws Exception {
         // Charger le fichier XSLT depuis le chemin d'accès ou la ressource
         // Exemple : return new StreamSource(new File("chemin/vers/votre/fichier.xslt"));
-        return new  StreamSource(new File("C:\\Users\\lenovo\\Desktop\\XML\\products.xsl"));
+        return new  StreamSource(new File("src\\main\\resources\\XSLT files\\products.xsl"));
     }
 
     private String getXmlContent(List<Product> productList) {
@@ -121,7 +121,7 @@ public void generatePdf(HttpServletResponse response, Cart cart) {
         String xmlContent = generateXmlContent(cart);
 
         // Transformer le XML en PDF en utilisant XSLT
-        String xsltFilePath = "C:\\Users\\lenovo\\Documents\\facture.xsl";  // Remplacez par le chemin réel du fichier XSLT
+        String xsltFilePath = "src\\main\\resources\\XSLT files\\facture.xsl";  // Remplacez par le chemin réel du fichier XSLT
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer transformer = factory.newTransformer(new StreamSource(xsltFilePath));
 

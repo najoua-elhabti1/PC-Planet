@@ -349,11 +349,12 @@
                             <h2 class="display-7 text-dark text-uppercase" >Pc Portable</h2>
                             <div class="btn-right">
                                 <div class="button-container row">
+
                                     <div class="col">
-                                        <a th:href="@{'/products/' + ${keys[2]}}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+                                        <a th:href="@{'/products/por'}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
                                     </div>
                                     <div class="col">
-                                        <form th:action="@{'/genererPdf/'+${keys[2]}}" method="get">
+                                        <form th:action="@{'/genererPdf/por'}" method="get">
                                             <button type="submit" class="btn btn-medium btn-normal text-uppercase">See Catalogue</button>
                                         </form>
                                     </div>
@@ -394,8 +395,8 @@
             <div class="display-header d-flex justify-content-between pb-3" >
                 <h2 class="display-7 text-dark text-uppercase" >Pc Bureau</h2>
                 <div class="btn-right">
-                    <a th:href="@{'/products/' + ${keys[1]}}" class="btn btn-medium btn-normal text-uppercase"  >Go to Shop</a>
-                    <form th:action="@{'/genererPdf/'+${keys[1]}}" method="get">
+                    <a th:href="@{'/products/bur' }" class="btn btn-medium btn-normal text-uppercase"  >Go to Shop</a>
+                    <form th:action="@{'/genererPdf/bur'}" method="get">
                         <button type="submit" class="btn btn-medium btn-normal text-uppercase">See Catalogue</button>
                     </form>
                 </div>
@@ -434,13 +435,13 @@
                 <h2 class="display-7 text-dark text-uppercase" >Tablette</h2>
                 <div class="btn-right">
                     <div class="button-container">
-                        <a th:href="@{'/products/' + ${keys[2]}}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
-                        <form th:action="@{'/genererPdf/'+${keys[2]}}" method="get">
+                        <a th:href="@{'/products/tab'}" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+                        <form th:action="@{'/genererPdf/tab'}" method="get">
                             <button type="submit" class="btn btn-medium btn-normal text-uppercase">See CatalogueF</button>
                         </form>
                     </div>
 
-                    </form>
+
                 </div>
             </div>
             <div class="swiper product-swiper" >

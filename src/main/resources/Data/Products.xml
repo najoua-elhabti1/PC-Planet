@@ -50,7 +50,7 @@
         <pr_description>PC Portable Acer Swift 3 SF314-59-54XF i5 11ème Génération
             Processeur: Intel® Core™ i5-1135G7, 2,40 GHz, Quad-core (4 cœurs)
             RAM: 16 Go LPDDR4X</pr_description>
-        <image>images/img_11.png</image>
+        <image>/images/img_11.png</image>
         <price>8990.0</price>
         <qte_stock>30</qte_stock>
         <category>
@@ -59,19 +59,6 @@
     </product>
     <product>
         <id_product>4</id_product>
-        <product_name>Mini ordinateur de bureau HP</product_name>
-        <pr_description>Modèle : HP 260 G4 DM
-            Processeur : 10e génération de processeurs Intel® Core™ i3-10110U (2.1 GHz jusqu’à 4.1GHz , 4 MB de cache, 2 cœurs).
-   </pr_description>
-        <image>images/img_14.png</image>
-        <price>9400.0</price>
-        <qte_stock>20</qte_stock>
-        <category>
-            <id_category>bur</id_category>
-        </category>
-    </product>
-    <product>
-        <id_product>5</id_product>
         <product_name>Dell XPS 15</product_name>
         <pr_description>Le modèle XPS 15 constitue le parfait équilibre entre taille et performances pour des projets créatifs encore plus exigeants. Redoublez de créativité grâce à un PC équipé de processeurs Intel® Core™ de 12e génération. </pr_description>
         <image>/images/img_12.png</image>
@@ -79,6 +66,152 @@
         <qte_stock>30</qte_stock>
         <category>
             <id_category>por</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>5</id_product>
+        <product_name>Mini ordinateur de bureau HP</product_name>
+        <pr_description>Modèle : HP 260 G4 DM
+            Processeur : 10e génération de processeurs Intel® Core™ i3-10110U (2.1 GHz jusqu’à 4.1GHz , 4 MB de cache, 2 cœurs).
+   </pr_description>
+        <image>/images/img_14.png</image>
+        <price>9400.0</price>
+        <qte_stock>20</qte_stock>
+        <category>
+            <id_category>bur</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>6</id_product>
+        <product_name>Lenovo ThinkCentre Tiny-in-One M910Q – i5 7Th Gen – Imprimante TS3340</product_name>
+        <pr_description>CPU : Intel® Core™ I5-7400T (7éme)
+            RAM : 8 Gb SDRAM DDR4 (Extensible)
+            Stockage : 240 Gb SSD (Extensible)
+            Écran : 24″ LED IPS Full-HD 178 degrés
+            Webcam HD 720p avec microphone
+            Haut-parleurs intégrés 2 x 2 Watts
+            Clavier et Souris Sans Fil Original
+            Imprimante CANON PIXMA TS3340 jet d’encre Wi-Fi
+            OS : Windows 10 Pro 64Bit
+        </pr_description>
+        <image>/images/Lenovo-ThinkCentre-Tiny-in-One-M910Q-i5-7Th-Gen-Imprimante-.-Occasion3-600x600.jpg.png</image>
+        <price>4490</price>
+        <qte_stock>4</qte_stock>
+        <category>
+            <id_category>bur</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>7</id_product>
+        <product_name>PC Bureau HP Z2 G4 Tour Workstation – NVIDIA Quadro P2000 5Go . Occasion</product_name>
+        <pr_description>CPU : Intel Xeon W-2144G
+            RAM : 32 Go DDR4 2666 Mhz
+            Stockage : 1To HDD
+            Stockage : 512 Gb SSD SATA 2.5″
+            GPU : NVIDIA Quadro P2000 5Go
+            Écran : 23″ Pouces HP EliteDisplay E233
+            Resolution : Full-HD 1920 x 1080 IPS
+            Clavier et Souris sans Fil HP ORIGINAL
+            OS : Windows 10
+        </pr_description>
+        <image>/images/PC-Bureau-HP-Z2-G4-Tour-Workstation-4-600x600.jpg (1).png</image>
+        <price>7590</price>
+        <qte_stock>2</qte_stock>
+        <category>
+            <id_category>bur</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>8</id_product>
+        <product_name>PC Bureau DELL OPTIPLEX 3000 MT TOWER – 27″Pouces LED Full-HD IPS</product_name>
+        <pr_description>CPU : Intel Core i5-12500
+            RAM : 8 Go RDDR4 3200MHz
+            GPU : Intel UHD Graphics 770
+            Stockage : 512 Gb SSD
+            OS : Windows 10 Professionnel
+            Écran : 27″ LED (1920×1080) Full-HD IPS
+            Clavier et Souris USB Fil
+        </pr_description>
+        <image>/images/DELL-Optiplex-3000-MT-27-POUCES-IPS.png</image>
+        <price>10890</price>
+        <qte_stock>1</qte_stock>
+        <category>
+            <id_category>bur</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>9</id_product>
+        <product_name>Accent Tab Fast10 4G (2Go, 32Go) Dual Camera Android - Noir</product_name>
+        <pr_description>CPU: Quad Core
+            Stockage: 32Gb
+            RAM :2Go
+            Résolution: 10.1’’ (1280x800)
+            Batterie: 5000mAh
+            Bluetooth : Bluetooth 4.0
+            Compatible: Android 9.0
+            Camera: Dual Camera
+            Connectors: Mic port/ USB C/Micro SD
+        </pr_description>
+        <image>/images/tab1.png</image>
+        <price>1999</price>
+        <qte_stock>7</qte_stock>
+        <category>
+            <id_category>tab</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>10</id_product>
+        <product_name>Lenovo Tablette tactile P12 Pro 5G 12.6" 8 Go RAM 256 Go Gris</product_name>
+        <pr_description>12.6" AMOLED - 2560 x 1600 (240 ppi)
+            Système d'exploitation : Android 11
+            RAM : 8 Go - LPDDR5 SDRAM
+            Stockage : 256 Go UFS card
+            Interfaces : 1 x USB-C 3.2 Gen 2/ DisplayPort 1.4, Broche POGO
+            Autonomie : Lecture vidéo: jusqu'à 14.6 heure(s), Navigation sur le Web: jusqu'à 10.7 heure(s), Durée de la conversation: jusqu'à 15 heure(s)
+            Cartes mémoire flash prises en charge : microSD
+        </pr_description>
+        <image>/images/tab2.png</image>
+        <price>7400</price>
+        <qte_stock>5</qte_stock>
+        <category>
+            <id_category>tab</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>11</id_product>
+        <product_name>Ulefone Tablet Armor PAD Rugged, 8 Inch Waterproof, Octa Core 4GB+64GB 256GB Expandable,7650mAh 13MP+5MP, IP68/IP69K,OTG,GPS/NFC</product_name>
+        <pr_description>Operating system: Android 12;
+            Battery: 7650mAh Type C 9V/2A;
+            Storage: 4GB RAM + 64GB ROM + 256GB SD card support;
+            Camera: 13MP rear camera + 5MP front camera;
+            Processor: Mediatek MT6762 octa-core 2.0GHz;
+            Display: 8.0-inch HD+ display, scratch-resistant, screen and robust 360-degree design;
+            Degree of protection: waterproof up to 1.5m (IP68) and dustproof (IP69K);
+            Dual Speakers: Amplifier for superior sound;
+            Navigation: GPS + Glonass + Beidou + Galileo;
+            Way to unlock: Face ID + Side-Mounted Fingerprint;
+            Others: Wi-Fi 2.4G+5G, 802.11 a/b/g/n/ac/ax / Bluetooth 5.2;
+            Sensor: Proximity sensor, Light sensor, Gravity sensor, Acceleration sensor, Geomagnetic sensor, Pedometer, OTG, FM;
+            Dimensions: 213.0*128.8*14.0 mm, net weight: 560g;
+            Package Contents: 1*Tablet; 1*AC Power Charger; 1*USB Type-C 2.0 Charging Cable ;1*Protective Film (Pre-installed); 1*SIM Needle; 1*Lanyard; 1*Multi-language User Manual; 1*Charging Instruction Card; 1*Multi-function Instruction Card
+        </pr_description>
+        <image>/images/tab3.png</image>
+        <price>2490</price>
+        <qte_stock>6</qte_stock>
+        <category>
+            <id_category>tab</id_category>
+        </category>
+    </product>
+    <product>
+        <id_product>12</id_product>
+        <product_name>Samsung Galaxy TAB A7 LITE SILVER 4G RAM STORAGE 64G</product_name>
+        <pr_description>Display 8.7" (1340 x 800)WXGA+Camera Rear 8MPFront 2MPProcessor "MediaTekMT8768T"Memory 4GB RAM64 GB Internal StorageMicro SD slot supportBattery 5,100mAh / 15W FastAudio Dual Speakers w/ Dolby AtmosDimensions 212.5 x 124.7 x 8.0 mm371 gColor Gray / Silver
+        </pr_description>
+        <image>/images/tab4.png</image>
+        <price>2490</price>
+        <qte_stock>6</qte_stock>
+        <category>
+            <id_category>tab</id_category>
         </category>
     </product>
 </Products>

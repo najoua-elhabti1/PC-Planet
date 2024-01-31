@@ -26,7 +26,7 @@ public class Product {
     @Column(name = "product_name" , nullable = false)
     private String product_name;
 
-    @Column(name = "pr_description", nullable = false)
+    @Column(name = "pr_description", nullable = false,length = 10000)
 
     private String pr_description;
 
@@ -39,6 +39,13 @@ public class Product {
         this.product_name = product_name;
         this.pr_description = pr_description;
         this.image = image;
+    }
+
+    public Product(String product_name, String pr_description, String image, double price) {
+        this.product_name = product_name;
+        this.pr_description = pr_description;
+        this.image = image;
+        this.price = price;
     }
 
     public void setCategory(Category category) {
